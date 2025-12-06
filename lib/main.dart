@@ -3,6 +3,7 @@ import 'package:blog_app/core/common/cubit/user_cubit/user_cubit.dart';
 import 'package:blog_app/core/theme/app_theme.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/features/auth/presentation/pages/login_page.dart';
+import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:blog_app/init_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ButtonCubit()),
-        BlocProvider(create: (_) => UserCubit()),
+        BlocProvider(create: (_) => servicesLocator<UserCubit>()),
 
         BlocProvider(create: (_) => servicesLocator<AuthBloc>()),
       ],
@@ -47,9 +48,9 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return LoginPage();
+            return const BlogPage();
           }
-          return LoginPage();
+          return const LoginPage();
         },
       ),
     );

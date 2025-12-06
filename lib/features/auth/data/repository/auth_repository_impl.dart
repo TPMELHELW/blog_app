@@ -25,6 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final data = await authRemoteDataSource.getCurrentUser();
       if (data != null) {
+        // print(data);
         return Right(data);
       }
       return Left(Failure('No current user found'));

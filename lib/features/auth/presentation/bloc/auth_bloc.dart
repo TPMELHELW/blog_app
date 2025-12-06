@@ -36,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<AuthSignIn>((event, emit) async {
       final data = await _signInUseCase(params: event.user);
-
+      // print(data);
       data.fold(
         (error) => emit(AuthFailure(message: error.message)),
         (data) => _successEmit(data, emit),
@@ -44,7 +44,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<CurrentUserEvent>((event, emit) async {
+      emit(AuthLoading());
       final data = await _currentUserUseCase();
+      // print(data);
       data.fold(
         (error) => emit(AuthFailure(message: error.message)),
         (data) => _successEmit(data, emit),

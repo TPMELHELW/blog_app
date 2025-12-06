@@ -9,8 +9,11 @@ class UserCubit extends Cubit<UserState> {
 
   void updateUser(User? user) {
     if (user == null) {
+      // print('Failure');
+
       emit(UserInitial());
     } else {
+      // print('Success's);
       emit(UserLoggedIn(user: user));
     }
   }

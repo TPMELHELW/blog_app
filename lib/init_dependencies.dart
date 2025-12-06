@@ -48,8 +48,8 @@ void _initAuth() {
         authRepository: servicesLocator<AuthRepositoryImpl>(),
       ),
     )
-    ..registerFactory(() => UserCubit())
-    ..registerFactory(
+    ..registerLazySingleton(() => UserCubit())
+    ..registerLazySingleton(
       () => AuthBloc(
         signUpUseCase: servicesLocator<SignUpUseCase>(),
         signInUseCase: servicesLocator<SignInUseCase>(),

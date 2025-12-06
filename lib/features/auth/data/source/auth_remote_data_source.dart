@@ -10,7 +10,7 @@ abstract interface class AuthRemoteDataSource {
   Future<UserModel?> getCurrentUser();
 }
 
-class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
+class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final SupabaseClient supabaseClient;
 
   AuthRemoteDataSourceImpl({required this.supabaseClient});
@@ -65,6 +65,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
             .from('profiles')
             .select()
             .eq('id', currentUser!.user.id);
+        print('Current user data: ${data.first}');
         return UserModel.fromJson(data.first);
       }
 
